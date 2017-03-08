@@ -63,7 +63,16 @@ void Insert(ElementType X, List L, Position P)
 }
 void DeleteList(List L)
 {
+	Position P, TmpCell;
 
+	P = L->Next;
+	L->Next = NULL;
+        while(P!=NULL)
+	{
+		TmpCell = P->Next;
+		free(P);
+		P = TmpCell;
+	}
 }
 Position Header(List L)
 {
