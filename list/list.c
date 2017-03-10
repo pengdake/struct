@@ -87,8 +87,8 @@ void Show(List L)
 	}
 }
 //3.3
-void Swap()
-Position Header(List L, ElementType x, ElementType y)
+Position Header(List L)
+void Swap(List L, ElementType x, ElementType y)
 {
 	PtrToNode p, TmpCell;
 	
