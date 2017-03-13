@@ -74,9 +74,40 @@ void DeleteList(List L)
 		P = TmpCell;
 	}
 }
-Position Header(List L)
+// 3.1
+void Show(List L)
 {
+	PtrToNode p;
 
+	p = L->Next;
+	while(p!=NULL)
+	{
+		printf("%s\n", p->Element);
+		p = p->Next;
+	}
+}
+//3.3
+void Swap()
+Position Header(List L, ElementType x, ElementType y)
+{
+	PtrToNode p, TmpCell;
+	
+	p = L;
+	while(p->Next!=NULL && (p->Next->Element != x || p->Next->Element != y))
+	{
+		p = p->Next;
+	}
+	if(p->Next == NULL)
+	{
+		Error("can't find elements");
+	}
+	else
+	{
+		TmpCell = p->Next->Next;
+		p->Next->Next = TmpCell->Next;
+		TmpCell->Next = p->Next;
+		p->Next = TmpCell; 	
+	}
 }
 Position First(List L)
 {
