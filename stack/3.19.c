@@ -1,30 +1,91 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include 'stack.h'
-#define MAXLINE 30;
-int compute(Stack S)
-{
-	char arr[MAXLINE];
-	int i, ele_1, ele_2, result;
-        char symbol[] = {'+', '-', '*', '/'};
+typedef ElementType int;
 
-	result = 0
-        while((s = fgets(arr, MAXLINE, stdin)) != EOF)
+int compute(char *arr, int len)
+{
+	Stack S;
+	int i;
+	ElementType ele, ele_1, ele_2, sum;
+
+
+	s = CreateStack();
+	sum = 0;
+	for(i=0;i<len;i++)
 	{
-		len = 4
-        	for(i = 0;i<len;i++ )
+		switch(arr[i])
 		{
-			if(s == symbol[i])
-			{
-	            		ele_1 = Top(S);
-				Pop(S);
-				ele_2 = Top(S);
-				pop(S);
-                                result = ele_1
-			}
-			else
-			{
-				
-			}
-	}	
+			case '+':
+				ele_1 = Top(s);
+				Pop(s);
+				if(sum == 0)
+				{
+					ele_2 = Top(s);
+					Pop(s);
+					sum = ele_1 + ele_2;
+				}
+				else
+				{
+					sum += ele_1;
+				}
+				Push(sum, s);
+				break;
+			case '-':
+				ele_1 = Top(s);
+				Pop(s);
+				if(sum == 0)
+				{
+					ele_2 = Top(s);
+					Pop(s);
+					sum = ele_1 - ele_2;
+				}
+				else
+				{
+					sum -= ele_1;
+				}
+				Push(sum, s);
+				break;
+			case '*':
+				ele_1 = Top(s);
+				Pop(s);
+				if(sum == 0)
+				{
+					ele_2 = Top(s);
+					Pop(s);
+					sum = ele_1 * ele_2;
+				}
+				else
+				{
+					sum *= ele_1;
+				}
+				Push(sum, s);
+				break;
+			case '/':
+				ele_1 = Top(s);
+				Pop(s);
+				if(sum == 0)
+				{
+					ele_2 = Top(s);
+					Pop(s);
+					sum = ele_1 / ele_2;
+				}
+				else
+				{
+					sum /= ele_1;
+				}
+				Push(sum, s);
+				break;
+			default:
+				ele = 0;
+                                while(arr[i+1] != '+' || arr[i+1] != '-' || arr[i+1] != '*' || arr[i+1] != '/')
+				{
+					ele = ele * 10 + atoi(arr[i++]);	
+				}
+				Push(ele, s);
+				break;
+		}
+	}
+	result = 0;
         
 }
